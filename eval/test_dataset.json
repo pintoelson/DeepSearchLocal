@@ -1,0 +1,32 @@
+[
+  {
+    "id": "bench-01",
+    "topic": "Current state and breakthroughs in 1-bit LLM architectures (BitNet b1.58)",
+    "category": "Machine Learning Systems",
+    "expected_key_aspects": [
+      "Ternary weights {-1, 0, 1}",
+      "Energy and memory efficiency vs FP16",
+      "Scaling laws and hardware accelerator implications"
+    ]
+  },
+  {
+    "id": "bench-02",
+    "topic": "Advances in solid-state battery electrolytes and commercialization timeline for EV adoption",
+    "category": "Material Science",
+    "expected_key_aspects": [
+      "Sulfide vs oxide vs polymer solid electrolytes",
+      "Dendrite formation challenges",
+      "Automotive pilot production lines (2025-2030)"
+    ]
+  },
+  {
+    "id": "bench-03",
+    "topic": "Model Context Protocol (MCP) vs OpenAI Function Calling: Architecture and Ecosystem Comparison",
+    "category": "Software Engineering",
+    "expected_key_aspects": [
+      "JSON-RPC client-server protocol standard",
+      "Security and local vs remote tool isolation",
+      "Ecosystem adoption and LangChain/LangGraph integration"
+    ]
+  }
+]

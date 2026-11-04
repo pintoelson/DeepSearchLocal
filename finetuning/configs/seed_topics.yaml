@@ -1,0 +1,170 @@
+# ==============================================================================
+# DeepSearch-Local: Multi-Domain Research Topic Taxonomy & Seeds
+# Used for synthetic trajectory generation across 8 high-entropy research domains.
+# ==============================================================================
+
+domains:
+  ai_ml_systems:
+    name: "AI & Machine Learning Systems"
+    description: "Model quantization, efficient inference, agent protocols, and scaling laws."
+    seeds:
+      - topic: "Current state of 1-bit and ternary LLM architectures (BitNet b1.58)"
+        subtopics:
+          - "absmax quantization and {-1, 0, 1} matrix multiplication"
+          - "Energy efficiency and memory reduction compared to FP16 baselines"
+          - "Custom hardware accelerators (FPGA and ASIC) for ternary logic"
+      - topic: "KV cache compression techniques for long-context transformer inference"
+        subtopics:
+          - "PagedAttention vs Multi-Head Latent Attention (MLA) in DeepSeek-V2/V3"
+          - "Dynamic token eviction strategies (StreamingLLM, H2O heavy hitters)"
+          - "Low-bit KV cache quantization (FP8 and INT4) impact on needle-in-a-haystack retrieval"
+      - topic: "Model Context Protocol (MCP) and agentic tool standardization"
+        subtopics:
+          - "JSON-RPC 2.0 client-host-server transport mechanisms"
+          - "Security isolation and SSRF prevention in local MCP server execution"
+          - "Interoperability between LangGraph, Claude Desktop, and Ollama runtimes"
+      - topic: "Test-time compute scaling and dynamic reflection in reasoning models"
+        subtopics:
+          - "Process-supervised reward models (PRM) vs outcome reward models (ORM)"
+          - "Monte Carlo Tree Search (MCTS) guided generation during inference"
+          - "Self-correction failure modes in small language models"
+
+  computer_systems:
+    name: "Computer Systems & Architecture"
+    description: "Operating systems, low-level networking, memory safety, and hardware interconnects."
+    seeds:
+      - topic: "Rust integration in the Linux kernel: Architecture and stability"
+        subtopics:
+          - "Memory safety guarantees vs C Foreign Function Interface (FFI) overhead"
+          - "Kernel driver development for NVMe and network interfaces in Rust"
+          - "Maintainer adoption and upstream merge challenges"
+      - topic: "eBPF-based observability and kernel-level network telemetry"
+        subtopics:
+          - "eBPF verifier safety constraints and JIT compilation"
+          - "Cilium vs traditional iptables/IPVS in Kubernetes networking"
+          - "Zero-overhead distributed tracing in production microservices"
+      - topic: "Compute Express Link (CXL 3.0) and heterogeneous memory pooling"
+        subtopics:
+          - "Memory pooling and direct device-to-device sharing across PCIe 5.0/6.0"
+          - "Cache-coherent latency overheads in multi-socket disaggregated memory"
+          - "Impact on large-scale distributed vector databases and LLM serving clusters"
+
+  physics_quantum:
+    name: "Physics & Quantum Computing"
+    description: "Quantum error correction, topological matter, and next-gen quantum processors."
+    seeds:
+      - topic: "Surface codes and fault-tolerant quantum error correction"
+        subtopics:
+          - "Syndrome extraction and minimum weight perfect matching (MWPM) decoders"
+          - "Physical to logical qubit threshold ratios in superconducting circuits"
+          - "Real-time FPGA decoding latencies vs qubit coherence times"
+      - topic: "Neutral atom quantum computers and Rydberg state interactions"
+        subtopics:
+          - "Optical tweezer arrays for dynamic 2D and 3D qubit shuttling"
+          - "Entangling gate fidelities in Rubidium and Ytterbium systems"
+          - "Scalability comparisons against superconducting and trapped-ion architectures"
+      - topic: "Non-Abelian anyons and topological quantum computing"
+        subtopics:
+          - "Majorana zero modes in semiconductor-superconductor nanowires"
+          - "Braiding operations for topologically protected quantum gates"
+          - "Experimental verification and artifact refutations in topological superconductors"
+
+  biotech_genomics:
+    name: "Biotechnology & Computational Genomics"
+    description: "Gene editing, structural biology, mRNA therapeutics, and synthetic biology."
+    seeds:
+      - topic: "CRISPR-Cas12 and Cas13 systems for targeted RNA and DNA therapeutics"
+        subtopics:
+          - "Off-target cleavage mitigation through high-fidelity engineered variants"
+          - "Non-viral delivery vehicles: Lipid nanoparticles (LNPs) and engineered VLPs"
+          - "In vivo editing clinical trials for sickle cell disease and transthyretin amyloidosis"
+      - topic: "Deep learning models for de novo protein design and allosteric binding"
+        subtopics:
+          - "Diffusion models (RFdiffusion, Chroma) vs autoregressive sequence generation"
+          - "Binding affinity prediction and experimental validation metrics"
+          - "Design of synthetic enzymes for industrial plastic degradation"
+      - topic: "Modified mRNA stability and immunogenicity modulation"
+        subtopics:
+          - "N1-methylpseudouridine incorporation and innate immune evasion"
+          - "Secondary structure optimization for extended intracellular half-life"
+          - "Next-generation self-amplifying RNA (saRNA) vaccine platforms"
+
+  materials_energy:
+    name: "Materials Science & Energy Storage"
+    description: "Solid-state batteries, next-gen electrolytes, and high-performance alloys."
+    seeds:
+      - topic: "All-solid-state lithium metal battery electrolytes"
+        subtopics:
+          - "Sulfide (LPSCl argyrodite) vs oxide (LLZO garnet) vs polymer electrolyte matrices"
+          - "Lithium dendrite propagation mechanisms at critical current densities"
+          - "Automotive pilot manufacturing lines and commercial production timelines (2025-2030)"
+      - topic: "Silicon-dominant anode degradation and interfacial mechanics"
+        subtopics:
+          - "Volume expansion (300%) management through nanostructured silicon-carbon composites"
+          - "Solid electrolyte interphase (SEI) stability and continuous electrolyte consumption"
+          - "Pre-lithiation technologies for initial coulombic efficiency improvement"
+      - topic: "High-entropy alloys (HEAs) for extreme mechanical and radiation environments"
+        subtopics:
+          - "Cantor alloys (FeCoNiCrMn) and refractory high-entropy alloys (RHEAs)"
+          - "Phase stability under high neutron flux in generation IV nuclear reactors"
+          - "Additive manufacturing techniques for compositionally graded components"
+
+  renewable_power:
+    name: "Renewable Energy & Power Systems"
+    description: "Grid storage, solar photovoltaics, and power electronics."
+    seeds:
+      - topic: "Perovskite-silicon tandem solar cells: Commercialization and degradation"
+        subtopics:
+          - "Moisture, heat, and UV degradation mechanisms in metal halide perovskites"
+          - "Power conversion efficiency records (>33%) and industrial roll-to-roll scaling"
+          - "Encapsulation materials for 25-year operational stability"
+      - topic: "Long-duration energy storage (LDES) via iron-air and flow batteries"
+        subtopics:
+          - "Reversible iron-oxygen electrochemical oxidation-reduction kinetics"
+          - "Vanadium redox flow batteries: Capital cost per kWh for 100+ hour discharge"
+          - "Levelized cost of storage (LCOS) comparison against lithium-ion peaker plants"
+      - topic: "Grid-forming inverters and synthetic inertia in 100% renewable grids"
+        subtopics:
+          - "Droop control vs virtual synchronous machine (VSM) algorithms"
+          - "Sub-synchronous resonance and weak grid stability dynamics"
+          - "Black-start capability from utility-scale inverter-based resources"
+
+  quantitative_finance:
+    name: "Quantitative Economics & Financial Engineering"
+    description: "Market microstructure, automated market makers, and sovereign debt mechanics."
+    seeds:
+      - topic: "Concentrated liquidity automated market makers (AMMs) and LVR"
+        subtopics:
+          - "Loss-Versus-Rebalancing (LVR) formulation and arbitrageur value extraction"
+          - "Dynamic fee mechanisms based on implied volatility (Uniswap v4 hooks)"
+          - "Just-in-Time (JIT) liquidity provision and impact on passive LP returns"
+      - topic: "High-frequency limit order book dynamics and Hawkes processes"
+        subtopics:
+          - "Self-exciting and mutually-exciting jump processes in quote arrival rates"
+          - "Order flow toxicity metrics (VPIN) and flash crash early warning indicators"
+          - "Reinforcement learning for optimal execution under market impact"
+      - topic: "Cross-border central bank digital currencies (CBDCs) and RTGS settlement"
+        subtopics:
+          - "Project mBridge architecture and distributed ledger technology governance"
+          - "Foreign exchange liquidity management and PvP (Payment-versus-Payment) settlement"
+          - "Sanctions resilience and disintermediation risks for correspondent banking"
+
+  law_governance:
+    name: "Law, Policy & AI Governance"
+    description: "Agent liability, intellectual property in synthetic data, and regulatory frameworks."
+    seeds:
+      - topic: "Legal liability and duty of care for autonomous agentic software failures"
+        subtopics:
+          - "Strict product liability vs negligence standards for autonomous decisions"
+          - "Agency law applicability: Can an autonomous agent bind a principal to contracts?"
+          - "Foreseeability in emergent multi-agent cascade failures"
+      - topic: "Copyright and fair use standards for AI training on web-scraped data"
+        subtopics:
+          - "Transformative use doctrine under US 17 U.S.C. § 107"
+          - "EU Digital Single Market Directive Text and Data Mining (TDM) opt-outs (Article 4)"
+          - "Contractual robots.txt enforcement and terms of service breach remedies"
+      - topic: "EU AI Act implementation: High-risk system compliance and auditing"
+        subtopics:
+          - "Conformity assessments and technical documentation for GPAI with systemic risk"
+          - "Copyright transparency requirements for training data summaries"
+          - "Enforcement mechanisms and European AI Office penalty structures"

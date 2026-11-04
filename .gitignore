@@ -1,0 +1,81 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+!.env.example
+
+# Node / Web Frontend
+web/node_modules/
+web/.next/
+web/out/
+web/build/
+.npm
+*.tsbuildinfo
+next-env.d.ts
+.turbo/
+web/.turbo/
+
+# Storage, Datasets & Checkpoints
+data/*
+data/.*
+!data/.gitkeep
+data/qdrant_storage/
+data/langfuse_storage/
+*.sqlite
+*.db
+*.sqlite3
+
+# Model weights, checkpoints & GGUFs
+models/
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+checkpoints/
+adapter/
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.directory
+
+# Test & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Backups & Logs
+*.bak
+*.tmp
+*.temp
+*.log
+logs/
