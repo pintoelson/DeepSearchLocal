@@ -1,4 +1,5 @@
 # Product Requirements Document (PRD)
+
 ## DeepSearch-Local: Autonomous Deep Research Agent Platform
 
 ---
@@ -31,29 +32,29 @@ flowchart TD
 
     API --> Agentic_Control_Plane
     
-    subgraph Tool_Plane [Tool Layer - Native & MCP Compatible]
-        DDGTool[DuckDuckGo Search + SearXNG Fallback]
-        ScrapeTool[SSRF-Guarded Trafilatura Scraper]
+    subgraph Tool_Plane ["Tool Layer - Native & MCP Compatible"]
+        DDGTool["DuckDuckGo Search + SearXNG Fallback"]
+        ScrapeTool["SSRF-Guarded Trafilatura Scraper"]
     end
     SearchNode <-->|In-Process Execution or MCP JSON-RPC| Tool_Plane
     
-    subgraph RAG_Plane [Dynamic Hybrid RAG Engine - CPU Offloaded]
-        QdrantStore[(Qdrant Vector DB: Ephemeral Dense + Sparse)]
-        Reranker[Cross-Encoder Reranker: bge-reranker-base on CPU]
+    subgraph RAG_Plane ["Dynamic Hybrid RAG Engine - CPU Offloaded"]
+        QdrantStore[("Qdrant Vector DB: Ephemeral Dense + Sparse")]
+        Reranker["Cross-Encoder Reranker: bge-reranker-base on CPU"]
     end
     IngestNode -->|Embed via CPU bge-small & Index| QdrantStore
     SynthLoop <-->|Hybrid Query & Server Fusion| QdrantStore
     QdrantStore <-->|Top-15 to Top-4| Reranker
 
-    subgraph Model_Execution_Plane [Local Inference - 6GB VRAM Budget]
-        OllamaEngine[Ollama Runtime / llama.cpp - Q4_K_M GGUF]
-        MergedModel[Merged QLoRA 3B SLM - 4096 Context]
+    subgraph Model_Execution_Plane ["Local Inference - 6GB VRAM Budget"]
+        OllamaEngine["Ollama Runtime / llama.cpp - Q4_K_M GGUF"]
+        MergedModel["Merged QLoRA 3B SLM - 4096 Context"]
     end
     PlannerNode & SynthLoop & GapNode & CompilerNode <--> OllamaEngine
     MergedModel --> OllamaEngine
 
-    subgraph Observability_Plane [LLMOps & Tracing]
-        Tracer[(Langfuse Cloud / Local Phoenix SQLite)]
+    subgraph Observability_Plane ["LLMOps & Tracing"]
+        Tracer[("Langfuse Cloud / Local Phoenix SQLite")]
     end
     Agentic_Control_Plane -.->|OpenTelemetry Traces| Tracer
 
@@ -69,6 +70,7 @@ flowchart TD
 ### 3. Detailed Component Specifications
 
 #### 3.1. Model Engineering & QLoRA Fine-Tuning Pipeline
+
 * **Base Architecture:** Small Language Model (SLM, 1.5B–3B parameter range, such as `Qwen/Qwen2.5-3B-Instruct` or `meta-llama/Llama-3.2-3B-Instruct`).
 * **Compute Constraints:** NVIDIA GeForce RTX 3050 Laptop GPU (6,144 MiB VRAM), CUDA 12.x/13.x.
 * **Quantization Scheme:** 4-bit NormalFloat (NF4) via `bitsandbytes`, double quantization enabled, compute dtype `torch.bfloat16`.
@@ -85,13 +87,14 @@ flowchart TD
   * Gradient checkpointing: Enabled
   * Target VRAM consumption during training: **4.8 GB to 5.4 GB** (leaving safety margin for system display buffers).
 * **Synthetic Data Generation Strategy:**
-  * Uses an automated Python generator script via OpenRouter (leveraging frontier models) to synthesize **3,000–5,000 instruction-tuning trajectories** (with 1,000 as a minimal quick-start baseline; estimated one-time generation cost ~$5 to $15) across 4 specific tasks:
+  * Uses an automated Python generator script via OpenRouter (leveraging frontier models) to synthesize **3,000–5,000 instruction-tuning trajectories** (with 1,000 as a minimal quick-start baseline; estimated one-time generation cost ~\$5 to \$15) across 4 specific tasks:
     1. *Query Decomposition (25%):* Multi-query generation from ambiguous research prompts.
     2. *Tool Calling & Argument Parsing (25%):* Valid JSON schema adherence and error-recovery trajectories.
     3. *Grounded Synthesis (35%):* Fact extraction and inline citation formatting (`[^chunk_id]`).
     4. *Gap Detection & Reflection (15%):* Identifying missing data, formulating targeted follow-up queries, and specifying sections requiring revision.
 
 #### 3.2. Tool Layer: Native Execution & Model Context Protocol (MCP)
+
 * **Execution Model:** Internal LangGraph nodes execute tools **natively in-process** using Python functions for zero-overhead, deterministic execution. A standalone Anthropic MCP JSON-RPC server is also provided to expose the same tools to external clients (e.g., Claude Desktop, Cursor).
 * **Search Backend:**
   * Primary: DuckDuckGo search library (`duckduckgo-search`) with retry logic and exponential backoff to handle rate limits.
@@ -105,6 +108,7 @@ flowchart TD
   *(Note: Draft state management is handled natively within LangGraph state transitions, not via an external tool).*
 
 #### 3.3. Dynamic Hybrid RAG Engine (CPU-Offloaded)
+
 * **Hardware Pinning:** Embedding and Re-Ranking models are strictly pinned to **CPU / ONNX Runtime**, preserving 100% of GPU VRAM for the 3B SLM.
 * **Vector Store:** Qdrant (deployed as an isolated Docker container with local volume persistence).
 * **Collection Strategy:** Ephemeral per-session collections generated via UUID, indexed on the fly as web pages are scraped, and pruned upon session completion.
@@ -115,40 +119,45 @@ flowchart TD
 * **Re-Ranking:** Lightweight cross-encoder (`BAAI/bge-reranker-base`) executed on CPU, evaluating the top-15 fused chunks down to the top-4 most semantically and lexically relevant passages.
 
 #### 3.4. Agent Orchestration: LangGraph Cyclic State Machine
+
 * **Framework:** `langgraph` (v0.2+) with `pydantic` v2 state validation and channel reducers.
 * **State Schema:**
-  ```python
-import operator
-from typing import Annotated, Any, Dict, List, Optional
-from pydantic import BaseModel, Field
 
-class ResearchState(BaseModel):
-    research_topic: str
-    outline: List[str] = Field(default_factory=list)
-    search_queries: Annotated[List[str], operator.add] = Field(default_factory=list)
-    scraped_urls: Annotated[List[str], operator.add] = Field(default_factory=list)
-    evidence_chunks: Annotated[List[Dict[str, Any]], operator.add] = Field(default_factory=list)
-    sections: Dict[str, str] = Field(default_factory=dict)
-    sections_to_revise: List[str] = Field(default_factory=list)
-    unresolved_gaps: List[str] = Field(default_factory=list)
-    iteration_count: int = 0
-    max_iterations: int = 2
-    final_report: Optional[str] = None
+  ```python
+  import operator
+  from typing import Annotated, Any, Dict, List, Optional
+  from pydantic import BaseModel, Field
+
+  class ResearchState(BaseModel):
+      research_topic: str
+      outline: List[str] = Field(default_factory=list)
+      search_queries: Annotated[List[str], operator.add] = Field(default_factory=list)
+      scraped_urls: Annotated[List[str], operator.add] = Field(default_factory=list)
+      evidence_chunks: Annotated[List[Dict[str, Any]], operator.add] = Field(default_factory=list)
+      sections: Dict[str, str] = Field(default_factory=dict)
+      sections_to_revise: List[str] = Field(default_factory=list)
+      unresolved_gaps: List[str] = Field(default_factory=list)
+      iteration_count: int = 0
+      max_iterations: int = 2
+      final_report: Optional[str] = None
   ```
+
 * **Graph Topology:**
   1. `planner_node`: Generates structured multi-section outline and initial search queries.
   2. `search_scrape_node`: Executes search and scraping tools, deduplicating against `scraped_urls`.
   3. `ingestion_node`: Splits text via recursive chunking, generates embeddings on CPU, and indexes chunks into the ephemeral Qdrant collection.
   4. `synthesis_loop`: Iteratively drafts sections against the outline. For each section, retrieves top-4 hybrid chunks, prompting the SLM to write cited section text using temporary chunk IDs (`[^chunk_hash]`).
   5. `reflection_node`: Audits drafts against the outline. If information gaps exist and `iteration_count < max_iterations`:
-     - Identifies missing facts.
-     - Sets `sections_to_revise` with specific section names.
-     - Increments `iteration_count`.
-     - Routes back to `search_scrape_node` with targeted queries.
+     * Identifies missing facts.
+     * Sets `sections_to_revise` with specific section names.
+     * Increments `iteration_count`.
+     * Routes back to `search_scrape_node` with targeted queries.
+
      Otherwise, routes to `compiler_node`.
   6. `compiler_node`: Consolidates all sections, normalizes temporary citation hashes into sequential numerical markers (`[1]`, `[2]`), generates the unified bibliography with source URLs and titles, and produces `final_report`.
 
 #### 3.5. Local Serving & Inference Engine
+
 * **Primary Engine: Ollama / `llama.cpp`:**
   * Merged model weights + LoRA adapter exported to 4-bit (`Q4_K_M`) GGUF via `llama.cpp`.
   * Served locally via Ollama with `PARAMETER num_ctx 4096` and `PARAMETER stop ["<|im_end|>", "<|endoftext|>"]`.
@@ -161,6 +170,7 @@ class ResearchState(BaseModel):
   * `event: citation_map`: Structured JSON mapping temporary chunk IDs and numerical citations (`[1]`) to source metadata (URL, title, quoted passage).
 
 #### 3.6. LLM Observability & Tracing (LLMOps)
+
 * **Platform:** Dual-mode tracing support:
   * **Option A (Default Local / Low-RAM):** Embedded local tracing via **Arize Phoenix** (SQLite-backed, minimal memory footprint) or Langfuse Cloud free-tier endpoint.
   * **Option B (Dockerized Self-Hosted):** Full Langfuse Docker stack (Langfuse Server + PostgreSQL), recommended only on systems with $\ge 16$ GB host RAM.
@@ -169,9 +179,10 @@ class ResearchState(BaseModel):
   * Full multi-step DAG trace graphs.
   * Node-level latency breakdown (Planner vs. Search vs. Synthesis vs. Reflection).
   * Prompt and completion token counts.
-  * Operational cost monitoring ($0.00 for local SLM vs. cloud baseline equivalents).
+  * Operational cost monitoring (\$0.00 for local SLM vs. cloud baseline equivalents).
 
 #### 3.7. Next.js Web Dashboard
+
 * **Framework:** Next.js 14+ (App Router), TypeScript, Tailwind CSS, shadcn/ui.
 * **Key Views:**
   * **Research Input View:** Topic input with depth/breadth configuration.
@@ -193,8 +204,10 @@ To validate the research hypothesis without confounding variables, the automated
 | **Baseline 2** | Llama 3.3 70B / GPT-4o-mini | Cloud (via OpenRouter API) | DeepSearch LangGraph Agent |
 | **Our System** | **Fine-Tuned 3B SLM (QLoRA)** | **Local (RTX 3050 - Ollama)** | **DeepSearch LangGraph Agent** |
 
-#### Evaluated Metrics (Ragas & TruLens with Cloud LLM Judge):
+#### Evaluated Metrics (Ragas & TruLens with Cloud LLM Judge)
+
 An external frontier judge model (`gpt-4o` or `claude-3-5-sonnet`) evaluates the output runs across:
+
 1. **Faithfulness (Hallucination Detection):** Ratio of claims in generated reports directly verifiable from retrieved source URLs.
 2. **Citation Precision:** Percentage of `[X]` citation markers that accurately support the immediate preceding sentence.
 3. **Outline Coverage:** Percentage of original research outline sub-questions answered in the final text.
@@ -205,7 +218,7 @@ An external frontier judge model (`gpt-4o` or `claude-3-5-sonnet`) evaluates the
 
 ### 5. Repository File Structure
 
-```
+```text
 deepsearch-local/
 ├── docker-compose.yml              # Orchestrates Qdrant and optional local telemetry
 ├── README.md                       # Architecture diagram, benchmark results, setup guide

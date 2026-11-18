@@ -1,0 +1,403 @@
+{
+  "corpus": [
+    {
+      "chunk_id": "chunk_rtx3050_specs",
+      "source_url": "https://developer.nvidia.com/rtx-3050-mobile",
+      "page_title": "RTX 3050 Laptop GPU Hardware Specifications",
+      "heading_path": "Hardware > GPU Specifications > Ampere Mobile",
+      "raw_content": "The NVIDIA GeForce RTX 3050 Laptop GPU is powered by the GA107 Ampere architecture with 2048 CUDA cores and 64 Tensor cores. It is configured with either 4 GB or 6 GB GDDR6 VRAM across a 96-bit memory bus interface delivering 168 GB/s bandwidth.",
+      "embedding_text": "[Context: Hardware > GPU Specifications > Ampere Mobile] The NVIDIA GeForce RTX 3050 Laptop GPU is powered by the GA107 Ampere architecture with 2048 CUDA cores and 64 Tensor cores. It is configured with either 4 GB or 6 GB GDDR6 VRAM across a 96-bit memory bus interface delivering 168 GB/s bandwidth."
+    },
+    {
+      "chunk_rtx3060_specs": "chunk_rtx3060_specs",
+      "chunk_id": "chunk_rtx3060_specs",
+      "source_url": "https://developer.nvidia.com/rtx-3060-mobile",
+      "page_title": "RTX 3060 Laptop GPU Specifications",
+      "heading_path": "Hardware > GPU Specifications > Ampere Mobile",
+      "raw_content": "The NVIDIA GeForce RTX 3060 Laptop GPU utilizes the GA106 silicon die, featuring 3840 CUDA cores and 6 GB or 12 GB GDDR6 VRAM over a 192-bit bus width delivering 336 GB/s memory bandwidth at up to 115W TGP.",
+      "embedding_text": "[Context: Hardware > GPU Specifications > Ampere Mobile] The NVIDIA GeForce RTX 3060 Laptop GPU utilizes the GA106 silicon die, featuring 3840 CUDA cores and 6 GB or 12 GB GDDR6 VRAM over a 192-bit bus width delivering 336 GB/s memory bandwidth at up to 115W TGP."
+    },
+    {
+      "chunk_id": "chunk_qlora_vram_opt",
+      "source_url": "https://huggingface.co/blog/qlora-memory",
+      "page_title": "QLoRA Memory Optimization on Consumer GPUs",
+      "heading_path": "Machine Learning > Parameter-Efficient Tuning > QLoRA",
+      "raw_content": "QLoRA introduces 4-bit NormalFloat (NF4) quantization and double quantization to compress base model weights. To fine-tune a 3B parameter model on a 6GB VRAM GPU, paged_adamw_8bit is essential to page memory between GPU and CPU during optimizer spikes, preventing Out-Of-Memory errors.",
+      "embedding_text": "[Context: Machine Learning > Parameter-Efficient Tuning > QLoRA] QLoRA introduces 4-bit NormalFloat (NF4) quantization and double quantization to compress base model weights. To fine-tune a 3B parameter model on a 6GB VRAM GPU, paged_adamw_8bit is essential to page memory between GPU and CPU during optimizer spikes, preventing Out-Of-Memory errors."
+    },
+    {
+      "chunk_id": "chunk_kv_cache_budget",
+      "source_url": "https://ollama.com/docs/memory-profiling",
+      "page_title": "KV Cache Sizing and VRAM Budgeting",
+      "heading_path": "Local Inference > Memory Allocation > KV Cache",
+      "raw_content": "For a 3B parameter transformer with a 4,096-token context window at 16-bit precision, the key-value cache requires approximately 1.0 GB of VRAM. Combined with 2.0 GB for Q4_K_M model weights and 1.2 GB for the CUDA driver context, total VRAM consumption reaches ~4.2 GB.",
+      "embedding_text": "[Context: Local Inference > Memory Allocation > KV Cache] For a 3B parameter transformer with a 4,096-token context window at 16-bit precision, the key-value cache requires approximately 1.0 GB of VRAM. Combined with 2.0 GB for Q4_K_M model weights and 1.2 GB for the CUDA driver context, total VRAM consumption reaches ~4.2 GB."
+    },
+    {
+      "chunk_id": "chunk_bitnet_b158_arch",
+      "source_url": "https://arxiv.org/abs/2402.17764",
+      "page_title": "BitNet b1.58 1-bit LLM Architecture",
+      "heading_path": "Neural Architectures > Quantization > Ternary LLMs",
+      "raw_content": "BitNet b1.58 quantizes weight matrices to ternary values {-1, 0, 1} using absolute maximum (absmax) quantization. Consequently, matrix multiplications in dense layers are replaced by integer additions and subtractions, slashing matrix compute energy by 71.4% compared to FP16 baselines.",
+      "embedding_text": "[Context: Neural Architectures > Quantization > Ternary LLMs] BitNet b1.58 quantizes weight matrices to ternary values {-1, 0, 1} using absolute maximum (absmax) quantization. Consequently, matrix multiplications in dense layers are replaced by integer additions and subtractions, slashing matrix compute energy by 71.4% compared to FP16 baselines."
+    },
+    {
+      "chunk_id": "chunk_sulfide_electrolyte",
+      "source_url": "https://nature.com/articles/solid-state-batteries",
+      "page_title": "Sulfide Solid Electrolyte Ionic Conductivity",
+      "heading_path": "Materials Science > Solid-State Batteries > Sulfides",
+      "raw_content": "Sulfide-based solid electrolytes like Li10GeP2S12 reach room-temperature lithium ionic conductivity of 12 mS/cm, exceeding liquid organic electrolytes. However, they react violently with ambient moisture to produce hazardous hydrogen sulfide (H2S) gas, requiring inert argon processing atmospheres.",
+      "embedding_text": "[Context: Materials Science > Solid-State Batteries > Sulfides] Sulfide-based solid electrolytes like Li10GeP2S12 reach room-temperature lithium ionic conductivity of 12 mS/cm, exceeding liquid organic electrolytes. However, they react violently with ambient moisture to produce hazardous hydrogen sulfide (H2S) gas, requiring inert argon processing atmospheres."
+    },
+    {
+      "chunk_id": "chunk_oxide_electrolyte",
+      "source_url": "https://nature.com/articles/oxide-garnet-cells",
+      "page_title": "Oxide Garnet LLZO Solid Electrolyte Stability",
+      "heading_path": "Materials Science > Solid-State Batteries > Oxides",
+      "raw_content": "Garnet-type oxide electrolytes such as LLZO (Li7La3Zr2O12) provide exceptional air stability and broad electrochemical stability windows. Their primary commercialization challenge is high solid-solid interfacial resistance against lithium metal anodes and ceramic brittleness during high-throughput roll-to-roll calendering.",
+      "embedding_text": "[Context: Materials Science > Solid-State Batteries > Oxides] Garnet-type oxide electrolytes such as LLZO (Li7La3Zr2O12) provide exceptional air stability and broad electrochemical stability windows. Their primary commercialization challenge is high solid-solid interfacial resistance against lithium metal anodes and ceramic brittleness during high-throughput roll-to-roll calendering."
+    },
+    {
+      "chunk_id": "chunk_mcp_protocol_arch",
+      "source_url": "https://spec.modelcontextprotocol.io/architecture",
+      "page_title": "Model Context Protocol Client-Server Architecture",
+      "heading_path": "Standards > Model Context Protocol > Architecture",
+      "raw_content": "The Model Context Protocol (MCP) defines an open standard using JSON-RPC 2.0 to connect LLM host clients to modular tool servers. MCP servers expose three fundamental primitives: Prompts (templated workflows), Resources (read-only documents and data), and Tools (executable functions with JSON schemas).",
+      "embedding_text": "[Context: Standards > Model Context Protocol > Architecture] The Model Context Protocol (MCP) defines an open standard using JSON-RPC 2.0 to connect LLM host clients to modular tool servers. MCP servers expose three fundamental primitives: Prompts (templated workflows), Resources (read-only documents and data), and Tools (executable functions with JSON schemas)."
+    },
+    {
+      "chunk_id": "chunk_mcp_transports",
+      "source_url": "https://spec.modelcontextprotocol.io/transports",
+      "page_title": "Model Context Protocol Transports",
+      "heading_path": "Standards > Model Context Protocol > Transports",
+      "raw_content": "MCP 1.0 supports two standard communication transports: stdio (standard input/output for local spawned child processes) and Server-Sent Events (SSE) over HTTP for remote networked services with bidirectional JSON-RPC messaging.",
+      "embedding_text": "[Context: Standards > Model Context Protocol > Transports] MCP 1.0 supports two standard communication transports: stdio (standard input/output for local spawned child processes) and Server-Sent Events (SSE) over HTTP for remote networked services with bidirectional JSON-RPC messaging."
+    },
+    {
+      "chunk_id": "chunk_deepseek_mla",
+      "source_url": "https://arxiv.org/abs/2405.04434",
+      "page_title": "DeepSeek Multi-Head Latent Attention",
+      "heading_path": "Transformer Architectures > Attention > MLA",
+      "raw_content": "Multi-Head Latent Attention (MLA) in DeepSeek-V2 compresses keys and values into a single low-dimensional latent vector via low-rank projection matrix W_DKV. This technique reduces the runtime KV cache size by 93.3% during autoregressive decoding while preserving full multi-head expressive capacity.",
+      "embedding_text": "[Context: Transformer Architectures > Attention > MLA] Multi-Head Latent Attention (MLA) in DeepSeek-V2 compresses keys and values into a single low-dimensional latent vector via low-rank projection matrix W_DKV. This technique reduces the runtime KV cache size by 93.3% during autoregressive decoding while preserving full multi-head expressive capacity."
+    },
+    {
+      "chunk_id": "chunk_deepseek_decoupled_rope",
+      "source_url": "https://arxiv.org/abs/2405.04434",
+      "page_title": "Decoupled Rotary Position Embedding in MLA",
+      "heading_path": "Transformer Architectures > Positional Embeddings > Decoupled RoPE",
+      "raw_content": "Because standard Rotary Position Embeddings (RoPE) are incompatible with low-rank matrix absorption across attention heads, MLA employs Decoupled RoPE: queries and keys carry a separate positional sub-vector that bypasses compression, preserving positional sensitivity over 128k context windows.",
+      "embedding_text": "[Context: Transformer Architectures > Positional Embeddings > Decoupled RoPE] Because standard Rotary Position Embeddings (RoPE) are incompatible with low-rank matrix absorption across attention heads, MLA employs Decoupled RoPE: queries and keys carry a separate positional sub-vector that bypasses compression, preserving positional sensitivity over 128k context windows."
+    },
+    {
+      "chunk_id": "chunk_loihi2_neuromorphic",
+      "source_url": "https://intel.com/technology/loihi-2-architecture",
+      "page_title": "Intel Loihi 2 Neuromorphic Chip Architecture",
+      "heading_path": "Edge Hardware > Neuromorphic Computing > Loihi 2",
+      "raw_content": "Intel Loihi 2 features 128 neuromorphic cores fabricated on Intel 4 process technology, supporting up to 1 million programmable Leaky Integrate-and-Fire (LIF) neurons and 120 million synapses. Operating asynchronously without a global clock, Loihi 2 consumes under 100 milliwatts during real-time edge processing.",
+      "embedding_text": "[Context: Edge Hardware > Neuromorphic Computing > Loihi 2] Intel Loihi 2 features 128 neuromorphic cores fabricated on Intel 4 process technology, supporting up to 1 million programmable Leaky Integrate-and-Fire (LIF) neurons and 120 million synapses. Operating asynchronously without a global clock, Loihi 2 consumes under 100 milliwatts during real-time edge processing."
+    },
+    {
+      "chunk_id": "chunk_spinnaker2_neuromorphic",
+      "source_url": "https://spinnaker2.eu/technical-report",
+      "page_title": "SpiNNaker2 Many-Core Neuromorphic Architecture",
+      "heading_path": "Edge Hardware > Neuromorphic Computing > SpiNNaker2",
+      "raw_content": "SpiNNaker2 integrates 152 ARM Cortex-M4F cores with custom hardware accelerators for machine learning and event-based synaptic updates. It relies on a custom packet-switched Network-on-Chip (NoC) to route spike events with microsecond multicast latencies across robotic sensor networks.",
+      "embedding_text": "[Context: Edge Hardware > Neuromorphic Computing > SpiNNaker2] SpiNNaker2 integrates 152 ARM Cortex-M4F cores with custom hardware accelerators for machine learning and event-based synaptic updates. It relies on a custom packet-switched Network-on-Chip (NoC) to route spike events with microsecond multicast latencies across robotic sensor networks."
+    },
+    {
+      "chunk_id": "chunk_ssrf_guardrails",
+      "source_url": "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "page_title": "SSRF Prevention in Autonomous Agent Scrapers",
+      "heading_path": "Security > Web Scraping > SSRF Protection",
+      "raw_content": "To prevent autonomous scraping agents from probing localhost services (such as Qdrant on port 6333 or Ollama on port 11434), validate_url_ssrf inspects DNS resolution across all redirects, strictly blocking IPv4 private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, and link-local addresses 169.254.0.0/16.",
+      "embedding_text": "[Context: Security > Web Scraping > SSRF Protection] To prevent autonomous scraping agents from probing localhost services (such as Qdrant on port 6333 or Ollama on port 11434), validate_url_ssrf inspects DNS resolution across all redirects, strictly blocking IPv4 private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, and link-local addresses 169.254.0.0/16."
+    },
+    {
+      "chunk_id": "chunk_trafilatura_extraction",
+      "source_url": "https://trafilatura.readthedocs.io/usage",
+      "page_title": "Trafilatura Web Content Extraction Pipeline",
+      "heading_path": "Data Engineering > Web Scraping > Trafilatura",
+      "raw_content": "Trafilatura applies structural heuristics and language models to strip advertisements, navigation bars, headers, and footer menus from raw HTML documents. It outputs clean, semantic Markdown retaining table structures, heading tags, and code blocks with higher signal-to-noise ratio than standard regex parsing.",
+      "embedding_text": "[Context: Data Engineering > Web Scraping > Trafilatura] Trafilatura applies structural heuristics and language models to strip advertisements, navigation bars, headers, and footer menus from raw HTML documents. It outputs clean, semantic Markdown retaining table structures, heading tags, and code blocks with higher signal-to-noise ratio than standard regex parsing."
+    },
+    {
+      "chunk_id": "chunk_fastembed_onnx",
+      "source_url": "https://qdrant.tech/fastembed-overview",
+      "page_title": "FastEmbed CPU Vector Inference with ONNX Runtime",
+      "heading_path": "Vector Search > FastEmbed > ONNX Acceleration",
+      "raw_content": "FastEmbed utilizes ONNX Runtime with AVX-512 and AVX2 CPU acceleration to generate dense (bge-small-en-v1.5) and sparse BM25 vectors without importing PyTorch. This eliminates CUDA context initialization overhead, ensuring GPU VRAM remains dedicated to LLM inference.",
+      "embedding_text": "[Context: Vector Search > FastEmbed > ONNX Acceleration] FastEmbed utilizes ONNX Runtime with AVX-512 and AVX2 CPU acceleration to generate dense (bge-small-en-v1.5) and sparse BM25 vectors without importing PyTorch. This eliminates CUDA context initialization overhead, ensuring GPU VRAM remains dedicated to LLM inference."
+    },
+    {
+      "chunk_id": "chunk_cross_encoder_rerank",
+      "source_url": "https://sbert.net/cross-encoder",
+      "page_title": "Cross-Encoder Re-Ranking Mechanics",
+      "heading_path": "Information Retrieval > Reranking > Cross-Encoder",
+      "raw_content": "Unlike bi-encoders which map queries and documents into isolated vector representations, cross-encoders like bge-reranker-base pass the query and document tokens jointly into the transformer. Cross-attention across all token pairs produces a superior relevance score logit, making it ideal for filtering Top-15 candidates down to Top-4.",
+      "embedding_text": "[Context: Information Retrieval > Reranking > Cross-Encoder] Unlike bi-encoders which map queries and documents into isolated vector representations, cross-encoders like bge-reranker-base pass the query and document tokens jointly into the transformer. Cross-attention across all token pairs produces a superior relevance score logit, making it ideal for filtering Top-15 candidates down to Top-4."
+    },
+    {
+      "chunk_id": "chunk_rrf_mathematics",
+      "source_url": "https://ir-benchmarks.org/rrf-fusion",
+      "page_title": "Reciprocal Rank Fusion in Hybrid Search",
+      "heading_path": "Search Algorithms > Fusion > RRF",
+      "raw_content": "Reciprocal Rank Fusion calculates document relevance by summing reciprocal rank positions: RRF_Score(d) = sum(1 / (k + r_m(d))) across dense and BM25 systems. Using k=60 smooths steep drop-offs, ensuring documents appearing reasonably high in both retrieval modalities outscore outliers with high rank in only one modality.",
+      "embedding_text": "[Context: Search Algorithms > Fusion > RRF] Reciprocal Rank Fusion calculates document relevance by summing reciprocal rank positions: RRF_Score(d) = sum(1 / (k + r_m(d))) across dense and BM25 systems. Using k=60 smooths steep drop-offs, ensuring documents appearing reasonably high in both retrieval modalities outscore outliers with high rank in only one modality."
+    },
+    {
+      "chunk_id": "chunk_heading_metadata_chunking",
+      "source_url": "https://deepsearch.local/docs/chunking",
+      "page_title": "Heading Metadata Preservation in Markdown Chunking",
+      "heading_path": "Document Ingestion > Text Splitting > Heading Hierarchy",
+      "raw_content": "RecursiveMarkdownChunker extracts Markdown heading paths and prepends breadcrumbs [Context: H1 > H2] to each chunk. When dense embedders process isolated passages lacking subject context, the heading prefix anchors ambiguous pronouns and improves retrieval accuracy on structured documentation.",
+      "embedding_text": "[Context: Document Ingestion > Text Splitting > Heading Hierarchy] RecursiveMarkdownChunker extracts Markdown heading paths and prepends breadcrumbs [Context: H1 > H2] to each chunk. When dense embedders process isolated passages lacking subject context, the heading prefix anchors ambiguous pronouns and improves retrieval accuracy on structured documentation."
+    },
+    {
+      "chunk_id": "chunk_distractor_sourdough",
+      "source_url": "https://kingarthurbaking.com/guides/sourdough",
+      "page_title": "Artisan Sourdough Starter Fermentation",
+      "heading_path": "Culinary > Baking > Fermentation",
+      "raw_content": "Sourdough fermentation relies on a wild symbiotic culture of lactic acid bacteria (Lactobacillus sanfranciscensis) and wild yeasts (Candida humilis). Ambient fermentation temperature dictates the ratio of lactic acid to acetic acid, controlling loaf tanginess.",
+      "embedding_text": "[Context: Culinary > Baking > Fermentation] Sourdough fermentation relies on a wild symbiotic culture of lactic acid bacteria (Lactobacillus sanfranciscensis) and wild yeasts (Candida humilis). Ambient fermentation temperature dictates the ratio of lactic acid to acetic acid, controlling loaf tanginess."
+    },
+    {
+      "chunk_id": "chunk_distractor_orbital",
+      "source_url": "https://spaceflight.nasa.gov/orbital-mechanics",
+      "page_title": "Geostationary Orbital Mechanics",
+      "heading_path": "Aerospace > Orbital Mechanics > Geostationary",
+      "raw_content": "A geostationary orbit is a circular geosynchronous orbit 35,786 kilometers above Earth's equator following the direction of Earth's rotation. An object in such an orbit has an orbital period equal to Earth's rotational period of one sidereal day.",
+      "embedding_text": "[Context: Aerospace > Orbital Mechanics > Geostationary] A geostationary orbit is a circular geosynchronous orbit 35,786 kilometers above Earth's equator following the direction of Earth's rotation. An object in such an orbit has an orbital period equal to Earth's rotational period of one sidereal day."
+    },
+    {
+      "chunk_id": "chunk_distractor_mesopotamia",
+      "source_url": "https://history.org/ancient-mesopotamia-agriculture",
+      "page_title": "Agricultural Systems in Ancient Mesopotamia",
+      "heading_path": "History > Ancient Civilizations > Mesopotamia",
+      "raw_content": "Agriculture in the Fertile Crescent between the Tigris and Euphrates rivers relied on elaborate irrigation canals, levees, and sluice gates to cultivate emmer wheat, barley, and flax amidst semi-arid climatic conditions.",
+      "embedding_text": "[Context: History > Ancient Civilizations > Mesopotamia] Agriculture in the Fertile Crescent between the Tigris and Euphrates rivers relied on elaborate irrigation canals, levees, and sluice gates to cultivate emmer wheat, barley, and flax amidst semi-arid climatic conditions."
+    }
+  ],
+  "queries": [
+    {
+      "id": "q_lex_01",
+      "query": "GA107 Ampere CUDA cores",
+      "category": "lexical",
+      "description": "Exact silicon die name and microarchitecture identifiers",
+      "ground_truth_relevance": {
+        "chunk_rtx3050_specs": 2
+      }
+    },
+    {
+      "id": "q_lex_02",
+      "query": "GA106 memory bandwidth 192-bit",
+      "category": "lexical",
+      "description": "Specific die code and bus width distinguishing from GA107",
+      "ground_truth_relevance": {
+        "chunk_rtx3060_specs": 2
+      }
+    },
+    {
+      "id": "q_lex_03",
+      "query": "paged_adamw_8bit optimizer VRAM spikes",
+      "category": "lexical",
+      "description": "Exact 8-bit paged optimizer identifier",
+      "ground_truth_relevance": {
+        "chunk_qlora_vram_opt": 2
+      }
+    },
+    {
+      "id": "q_lex_04",
+      "query": "Li10GeP2S12 ionic conductivity mS/cm",
+      "category": "lexical",
+      "description": "Exact chemical formula of sulfide electrolyte",
+      "ground_truth_relevance": {
+        "chunk_sulfide_electrolyte": 2
+      }
+    },
+    {
+      "id": "q_lex_05",
+      "query": "LLZO garnet-type air stability",
+      "category": "lexical",
+      "description": "Specific mineral garnet acronym LLZO",
+      "ground_truth_relevance": {
+        "chunk_oxide_electrolyte": 2
+      }
+    },
+    {
+      "id": "q_lex_06",
+      "query": "W_DKV low-rank projection matrix",
+      "category": "lexical",
+      "description": "Specific weight matrix identifier in DeepSeek MLA",
+      "ground_truth_relevance": {
+        "chunk_deepseek_mla": 2
+      }
+    },
+    {
+      "id": "q_lex_07",
+      "query": "validate_url_ssrf private IP ranges",
+      "category": "lexical",
+      "description": "Exact security function name and IP check",
+      "ground_truth_relevance": {
+        "chunk_ssrf_guardrails": 2
+      }
+    },
+    {
+      "id": "q_lex_08",
+      "query": "Intel 4 process 1 million LIF neurons",
+      "category": "lexical",
+      "description": "Hardware process node and neuron specification count",
+      "ground_truth_relevance": {
+        "chunk_loihi2_neuromorphic": 2
+      }
+    },
+    {
+      "id": "q_sem_01",
+      "query": "How to fine-tune compact language models on consumer laptop GPUs without running out of memory?",
+      "category": "conceptual",
+      "description": "Semantic query on VRAM optimization without mentioning QLoRA or 4-bit explicitly",
+      "ground_truth_relevance": {
+        "chunk_qlora_vram_opt": 2,
+        "chunk_kv_cache_budget": 1
+      }
+    },
+    {
+      "id": "q_sem_02",
+      "query": "What is the memory footprint of storing transformer attention activations during token generation?",
+      "category": "conceptual",
+      "description": "Conceptual query for KV cache sizing without using the exact abbreviation 'KV cache'",
+      "ground_truth_relevance": {
+        "chunk_kv_cache_budget": 2,
+        "chunk_deepseek_mla": 1
+      }
+    },
+    {
+      "id": "q_sem_03",
+      "query": "Replacing floating-point multiplications with low-precision additions to improve computational efficiency",
+      "category": "conceptual",
+      "description": "Conceptual query targeting 1-bit / ternary quantization benefits",
+      "ground_truth_relevance": {
+        "chunk_bitnet_b158_arch": 2
+      }
+    },
+    {
+      "id": "q_sem_04",
+      "query": "Safety hazards associated with moisture exposure in advanced solid battery materials",
+      "category": "conceptual",
+      "description": "Semantic query describing toxic gas release without mentioning H2S or Li10GeP2S12",
+      "ground_truth_relevance": {
+        "chunk_sulfide_electrolyte": 2
+      }
+    },
+    {
+      "id": "q_sem_05",
+      "query": "Brain-inspired neuromorphic microchips consuming minimal power for real-time edge sensory processing",
+      "category": "conceptual",
+      "description": "Conceptual query matching spiking neural hardware",
+      "ground_truth_relevance": {
+        "chunk_loihi2_neuromorphic": 2,
+        "chunk_spinnaker2_neuromorphic": 1
+      }
+    },
+    {
+      "id": "q_sem_06",
+      "query": "Preventing internal network reconnaissance and protecting private local endpoints from autonomous agents",
+      "category": "conceptual",
+      "description": "Conceptual query regarding agent web security and loopback protection",
+      "ground_truth_relevance": {
+        "chunk_ssrf_guardrails": 2
+      }
+    },
+    {
+      "id": "q_sem_07",
+      "query": "Generating CPU embeddings without CUDA initialization to avoid graphics memory fragmentation",
+      "category": "conceptual",
+      "description": "Conceptual query on ONNX and FastEmbed runtime benefits",
+      "ground_truth_relevance": {
+        "chunk_fastembed_onnx": 2
+      }
+    },
+    {
+      "id": "q_sem_08",
+      "query": "Evaluating candidate documents using full query-document attention scoring rather than independent embeddings",
+      "category": "conceptual",
+      "description": "Conceptual query distinguishing cross-encoders from bi-encoders",
+      "ground_truth_relevance": {
+        "chunk_cross_encoder_rerank": 2
+      }
+    },
+    {
+      "id": "q_mix_01",
+      "query": "What are the GDDR6 VRAM capacity and memory bandwidth specifications of the RTX 3050 Laptop GPU?",
+      "category": "mixed",
+      "description": "Combines model name with hardware memory concepts",
+      "ground_truth_relevance": {
+        "chunk_rtx3050_specs": 2
+      }
+    },
+    {
+      "id": "q_mix_02",
+      "query": "How does BitNet b1.58 ternary absmax quantization reduce energy consumption vs FP16?",
+      "category": "mixed",
+      "description": "Combines architecture name with energy reduction metrics",
+      "ground_truth_relevance": {
+        "chunk_bitnet_b158_arch": 2
+      }
+    },
+    {
+      "id": "q_mix_03",
+      "query": "What three core primitives are exposed by Model Context Protocol (MCP) servers over JSON-RPC?",
+      "category": "mixed",
+      "description": "Combines protocol name with capability primitives",
+      "ground_truth_relevance": {
+        "chunk_mcp_protocol_arch": 2
+      }
+    },
+    {
+      "id": "q_mix_04",
+      "query": "Why does DeepSeek Multi-Head Latent Attention (MLA) require Decoupled RoPE for position encoding?",
+      "category": "mixed",
+      "description": "Combines MLA architecture code with rotary embedding mechanics",
+      "ground_truth_relevance": {
+        "chunk_deepseek_decoupled_rope": 2,
+        "chunk_deepseek_mla": 1
+      }
+    },
+    {
+      "id": "q_mix_05",
+      "query": "How does Reciprocal Rank Fusion (RRF) with smoothing constant k=60 combine dense and BM25 results?",
+      "category": "mixed",
+      "description": "Combines algorithm formula details with hybrid search concepts",
+      "ground_truth_relevance": {
+        "chunk_rrf_mathematics": 2
+      }
+    },
+    {
+      "id": "q_mix_06",
+      "query": "How does RecursiveMarkdownChunker preserve context breadcrumbs when splitting documentation?",
+      "category": "mixed",
+      "description": "Combines class identifier with chunking context explanation",
+      "ground_truth_relevance": {
+        "chunk_heading_metadata_chunking": 2
+      }
+    },
+    {
+      "id": "q_mix_07",
+      "query": "How does Trafilatura extract clean markdown content and strip navigation boilerplate from HTML?",
+      "category": "mixed",
+      "description": "Combines library name with cleaning heuristics",
+      "ground_truth_relevance": {
+        "chunk_trafilatura_extraction": 2
+      }
+    },
+    {
+      "id": "q_mix_08",
+      "query": "What are the core differences in transport between MCP stdio and SSE connections?",
+      "category": "mixed",
+      "description": "Combines protocol name with transport protocol names",
+      "ground_truth_relevance": {
+        "chunk_mcp_transports": 2
+      }
+    }
+  ]
+}
